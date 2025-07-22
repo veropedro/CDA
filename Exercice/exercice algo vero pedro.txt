@@ -1,0 +1,20 @@
+exercice 1:
+
+
+variable
+n: entier
+ok: bouleen
+
+debut
+	repeter
+	ecrire (n)
+		si n>0 et si n mod 2 = 0
+		si non ecrire("erreur") si n<0 et si n mod 2 = 1
+		jusqu'a ok = vrai
+	finsi
+fin
+
+
+
+exercice 2:
+
