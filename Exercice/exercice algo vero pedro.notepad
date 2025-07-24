@@ -381,3 +381,45 @@ fin
 
 
 
+exercice 5.1: occurence tableau de 100
+
+
+variable:
+t[100] : tabelau de 100 entiers
+i , x , compteur : entiers
+compteur = 0
+
+debut
+	ecrrire une valeur entre 0 et 100
+	lire x
+
+	pour i allant de 0 à 100 faire
+		si t[i] = x
+			compteur = compteur +1
+		fin si
+	fin pour
+	afficher "la valeur de" , x , "se retrouve" , compteur , "fois dans le tableau"
+fin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
