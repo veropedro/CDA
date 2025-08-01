@@ -405,6 +405,24 @@ fin
 
 
 
+exercice 2: factorielle
+
+
+Variables
+    N, i, resultat : ENTIER
+
+DEBUT
+    N ← lireEntier()
+    resultat ← 1
+    i ← 1
+
+    TANT QUE i ≤ N FAIRE
+        resultat ← resultat * i
+        i ← i + 1
+    FIN TANT QUE
+
+    ECRIRE "La factorielle de", N, "est :", resultat
+FIN
 
 
 
