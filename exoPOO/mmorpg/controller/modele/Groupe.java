@@ -6,6 +6,7 @@ public class Groupe {
     private String nom;
     private ArrayList<Guerrier> guerriers = new ArrayList<>();
     private ArrayList<Soigneur> soigneurs = new ArrayList<>();
+    private ArrayList<Voleur> voleurs = new ArrayList<>();
     private LocalDate date;
 
     public Groupe(String nom) {
@@ -28,6 +29,18 @@ public class Groupe {
 
     public void ajouterSoigneur(Soigneur s) {
         soigneurs.add(s);
+    }
+    public void ajouterVoleur(Voleur v) {
+        voleurs.add(v);
+    }
+    public void afficherVoleurs() {
+        for (Voleur v : voleurs) {
+            System.out.println(v);
+        }
+    }
+
+    public ArrayList<Voleur> getVoleurs() {
+        return voleurs;
     }
 
     public void afficherGuerriers() {

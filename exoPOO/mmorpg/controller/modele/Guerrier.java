@@ -20,4 +20,9 @@ public class Guerrier extends Personnage {
         return super.toString() + ", point de force : " + this.getPdf() ;
     }
 
+    @Override
+    public int compareTo(Guerrier guer);{
+
+    }
+
 }

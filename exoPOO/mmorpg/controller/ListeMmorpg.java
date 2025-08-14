@@ -26,6 +26,13 @@ public class ListeMmorpg {
         soigneurs.add(new Soigneur("Mia", "soigneur", "humain", 1, 100, 1));
         soigneurs.add(new Soigneur("Ares", "soigneur", "humain", 1, 100, 1));
 
+        voleurs.get(0).setNom("nomVoleur1");
+        voleurs.get(1).setNom("nomVoleur2");
+
+        voleurs.get(0).getClasse();
+        voleurs.get(1).getClasse();
+
+
 
     }
     public ArrayList<Voleur> getVoleurs() {

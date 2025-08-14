@@ -20,5 +20,21 @@ public class Voleur extends Personnage {
         return super.toString() + ", point de force : " + this.getPdh() ;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Voleur) {
+            if (//this.getNom().equals(((Voleur) obj).getNom())
+                    //&& this.getRace().equals(((Voleur) obj).getRace())
+                     this.getClasse().equals(((Voleur) obj).getClasse())){
+                    //&& this.getNiveau() == ((Voleur) obj).getNiveau()
+                    //&& this.getPdv() == ((Voleur) obj).getPdv()
+                    //&& this.getPdh() == ((Voleur) obj).getPdh())
+
+                return true;
+            }
+
+        }
+        return false;
+    }
 }
 

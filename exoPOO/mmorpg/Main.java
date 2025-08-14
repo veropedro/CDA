@@ -1,9 +1,11 @@
 package vue;
-
+import java.util.ArrayList;
 import vue.controller.ListeMmorpg;
 import vue.controller.modele.Guerrier;
 import vue.controller.modele.Soigneur;
 import vue.controller.modele.Voleur;
+
+import java.util.Objects;
 import java.util.Scanner;
 import vue.controller.modele.Groupe;
 import java.time.LocalDate;
@@ -51,17 +53,32 @@ public class Main {
         Groupe monGroupe = new Groupe("les Heros");
 
 
+
+
+
         // Ajouter des personnages au groupe
-        monGroupe.ajouterGuerrier(new Guerrier("Paf", "Elfe", "guerrier", 1, 100, 1));
+        monGroupe.ajouterVoleur(new Voleur ("Paf", "Elfe", "voleur", 1, 100, 1));
         monGroupe.ajouterSoigneur(new Soigneur("Mickey", "Gnome", "soigneur", 2, 100, 2));
+        monGroupe.ajouterVoleur(new Voleur ("Mario", "humain", "voleur", 3, 100, 3));
         monGroupe.setDate(LocalDate.of(2025, 8, 13));
 
 
         // Afficher le groupe
         System.out.println("Groupe : " + monGroupe.getNom());
-        monGroupe.afficherGuerriers();
+        monGroupe.afficherVoleurs();
         monGroupe.afficherSoigneurs();
+
         System.out.println("Date de l'événement : " + monGroupe.getDate());
+
+        boolean e1 = ("nomVoleur1" == "nomVoleur2");
+        System.out.println("nomVoleur1 == nomVoleur2 " + e1);
+
+        System.out.println("Classe du voleur 1 : " + monGroupe.getVoleurs().get(0).getClasse()); // Humain
+        System.out.println("Classe du voleur 2 : " + monGroupe.getVoleurs().get(1).getClasse());
+
+        System.out.println(monGroupe.getVoleurs().get(0) == monGroupe.getVoleurs().get(1));
+
+        System.out.println(monGroupe.getVoleurs().get(0).equals(monGroupe.getVoleurs().get(1)));
         System.out.println();
 
         // Exemple simple : on demande un personnage à l'utilisateur et on l'ajoute
