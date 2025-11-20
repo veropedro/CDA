@@ -1,0 +1,15 @@
+USE exo10;
+ 
+-- Quelleestlacompositiondel’équipeFestina(Numéro,nometpaysdescoureurs)?
+
+-- QuelestlenombredekilomètrestotalduTourdeFrance97?
+
+-- Quelestlenombredekilomètrestotaldesétapesdetype"HauteMontagne"?
+
+-- Quelssontlesnomsdescoureursquin’ontpasobtenudebonifications?
+
+-- Quelssontlesnomsdescoureursquiontparticipéàtouteslesétapes?
+
+-- Quelestleclassementgénéraldescoureurs(nom,codeéquipe,codepaysettempsdescoureurs)àl’issuedes13premièresétapessachantquelesbonificationsontétéintégréesdanslestempsréalisésàchaqueétape?
+
+-- Quelestleclassementparéquipeàl’issuedes13premièresétapes(nomettempsdeséquipes)?

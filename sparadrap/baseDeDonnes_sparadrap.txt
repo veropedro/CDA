@@ -1,0 +1,151 @@
+Sub Create_Tables()
+
+DoCmd.RunSQL "CREATE TABLE ADRESSE(" & _
+   "idAdresse INT," & _
+   "ad_numero INT NOT NULL," & _
+   "ad_rue VARCHAR(50) NOT NULL," & _
+   "ad_codePostal INT NOT NULL," & _
+   "ad_ville VARCHAR(50) NOT NULL," & _
+   "PRIMARY KEY(idAdresse)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Personne(" & _
+   "idPersonne INT," & _
+   "pers_nom VARCHAR(50) NOT NULL," & _
+   "pers_prenom VARCHAR(50) NOT NULL," & _
+   "pers_civilité VARCHAR(50) NOT NULL," & _
+   "PRIMARY KEY(idPersonne)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE COORDONNEES(" & _
+   "idCoordonnees INT," & _
+   "coo_telephone INT NOT NULL," & _
+   "coo_email VARCHAR(50) NOT NULL," & _
+   "PRIMARY KEY(idCoordonnees)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE ORDONNANCE(" & _
+   "idOrdonnance INT," & _
+   "PRIMARY KEY(idOrdonnance)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE MEDICAMENT(" & _
+   "idMedicament INT," & _
+   "medoc_prix CURRENCY NOT NULL," & _
+   "medoc_nom VARCHAR(50) NOT NULL," & _
+   "medoc_ategorie VARCHAR(50) NOT NULL," & _
+   "PRIMARY KEY(idMedicament)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE ACHAT(" & _
+   "idAchat INT," & _
+   "parOrdonanceOuPas LOGICAL NOT NULL," & _
+   "PRIMARY KEY(idAchat)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE CLIENT(" & _
+   "idClient INT," & _
+   "cli_numeroSecu INT NOT NULL," & _
+   "cli_medecinTraitant VARCHAR(50) NOT NULL," & _
+   "cli_dateNaissance DATE NOT NULL," & _
+   "idPersonne INT NOT NULL," & _
+   "PRIMARY KEY(idClient)," & _
+   "FOREIGN KEY(idPersonne) REFERENCES Personne(idPersonne)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE MUTUELLE(" & _
+   "idMutuelle INT," & _
+   "mut_nomMutuelle VARCHAR(50) NOT NULL," & _
+   "mut_tauxPriseChargeMedoc INT NOT NULL," & _
+   "idClient INT NOT NULL," & _
+   "PRIMARY KEY(idMutuelle)," & _
+   "FOREIGN KEY(idClient) REFERENCES CLIENT(idClient)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE MEDECIN(" & _
+   "idMedecin INT," & _
+   "med_numeroAgreement INT NOT NULL," & _
+   "idClient INT NOT NULL," & _
+   "idPersonne INT NOT NULL," & _
+   "PRIMARY KEY(idMedecin)," & _
+   "FOREIGN KEY(idClient) REFERENCES CLIENT(idClient)," & _
+   "FOREIGN KEY(idPersonne) REFERENCES Personne(idPersonne)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE avoir(" & _
+   "idPersonne INT," & _
+   "idCoordonnees INT," & _
+   "PRIMARY KEY(idPersonne, idCoordonnees)," & _
+   "FOREIGN KEY(idPersonne) REFERENCES Personne(idPersonne)," & _
+   "FOREIGN KEY(idCoordonnees) REFERENCES COORDONNEES(idCoordonnees)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE situer(" & _
+   "idAdresse INT," & _
+   "idPersonne INT," & _
+   "PRIMARY KEY(idAdresse, idPersonne)," & _
+   "FOREIGN KEY(idAdresse) REFERENCES ADRESSE(idAdresse)," & _
+   "FOREIGN KEY(idPersonne) REFERENCES Personne(idPersonne)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE prescrir(" & _
+   "idMedecin INT," & _
+   "idOrdonnance INT," & _
+   "date_ DATE NOT NULL," & _
+   "PRIMARY KEY(idMedecin, idOrdonnance)," & _
+   "FOREIGN KEY(idMedecin) REFERENCES MEDECIN(idMedecin)," & _
+   "FOREIGN KEY(idOrdonnance) REFERENCES ORDONNANCE(idOrdonnance)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE lier(" & _
+   "idOrdonnance INT," & _
+   "idMedicament INT," & _
+   "PRIMARY KEY(idOrdonnance, idMedicament)," & _
+   "FOREIGN KEY(idOrdonnance) REFERENCES ORDONNANCE(idOrdonnance)," & _
+   "FOREIGN KEY(idMedicament) REFERENCES MEDICAMENT(idMedicament)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE effectuer(" & _
+   "idClient INT," & _
+   "idAchat INT," & _
+   "date_ VARCHAR(50)," & _
+   "PRIMARY KEY(idClient, idAchat)," & _
+   "FOREIGN KEY(idClient) REFERENCES CLIENT(idClient)," & _
+   "FOREIGN KEY(idAchat) REFERENCES ACHAT(idAchat)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE relier(" & _
+   "idOrdonnance INT," & _
+   "idAchat INT," & _
+   "PRIMARY KEY(idOrdonnance, idAchat)," & _
+   "FOREIGN KEY(idOrdonnance) REFERENCES ORDONNANCE(idOrdonnance)," & _
+   "FOREIGN KEY(idAchat) REFERENCES ACHAT(idAchat)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE constituer(" & _
+   "idMedicament INT," & _
+   "idAchat INT," & _
+   "dateMiseServiceMedoc DATE NOT NULL," & _
+   "PRIMARY KEY(idMedicament, idAchat)," & _
+   "FOREIGN KEY(idMedicament) REFERENCES MEDICAMENT(idMedicament)," & _
+   "FOREIGN KEY(idAchat) REFERENCES ACHAT(idAchat)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE contacter(" & _
+   "idMutuelle INT," & _
+   "idCoordonnees INT," & _
+   "PRIMARY KEY(idMutuelle, idCoordonnees)," & _
+   "FOREIGN KEY(idMutuelle) REFERENCES MUTUELLE(idMutuelle)," & _
+   "FOREIGN KEY(idCoordonnees) REFERENCES COORDONNEES(idCoordonnees)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE resider(" & _
+   "idAdresse INT," & _
+   "idMutuelle INT," & _
+   "departement VARCHAR(50) NOT NULL," & _
+   "PRIMARY KEY(idAdresse, idMutuelle)," & _
+   "FOREIGN KEY(idAdresse) REFERENCES ADRESSE(idAdresse)," & _
+   "FOREIGN KEY(idMutuelle) REFERENCES MUTUELLE(idMutuelle)" & _
+");"   
+
+End Sub

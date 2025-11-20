@@ -1,0 +1,129 @@
+package fr.afpa.pompey.cda22045.modele;
+
+import fr.afpa.pompey.cda22045.ExceptionPharma;
+import fr.afpa.pompey.cda22045.Regex;
+
+public class Personne {
+    private int id;
+    private String nom;
+    private String prenom;
+    private String adresse;
+    private String codePostal;
+    private String ville;
+    private String telephone;
+    private String email;
+
+
+    public Personne(int id, String nom, String prenom, String adresse, String codePostal, String ville, String telephone, String email) throws ExceptionPharma {
+        this.setId(id);
+        this.setNom(nom);
+        this.setPrenom(prenom);
+        this.setAdresse(adresse);
+        this.setCodePostal(codePostal);
+        this.setVille(ville);
+        this.setTelephone(telephone);
+        this.setEmail(email);
+    }
+
+
+    public int getId() {return this.id; }
+
+    public void setId(int id) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("L'id doit être strictement positif.");
+        }
+
+        // Si ton id est déjà défini, on empêche de le modifier
+        if (this.id != 0) {
+            throw new IllegalStateException("L'id ne peut pas être modifié une fois défini.");
+        }
+
+        this.id = id;
+    }
+
+
+    public String getNom() {
+        return this.nom;
+    }
+
+    public void setNom(String nom) throws ExceptionPharma {
+
+        if (!Regex.isValid(nom, Regex.LETTRE)) {
+            throw new ExceptionPharma("Erreur dans le nom ! Merci de corriger");
+        }
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return this.prenom;
+    }
+
+    public void setPrenom(String prenom) throws ExceptionPharma {
+
+        if (!Regex.isValid(prenom, Regex.LETTRE)) {
+            throw new ExceptionPharma("Erreur dans le prenom ! Merci de corriger");
+        }
+        this.prenom = prenom;
+    }
+
+    public String getAdresse() {
+        return this.adresse;
+    }
+
+    public void setAdresse(String adresse) throws ExceptionPharma {
+        if (adresse == null || adresse.isEmpty()) {
+            throw new ExceptionPharma("Erreur dans l'adresse ! Merci de corriger");
+        }
+        this.adresse = adresse;
+    }
+
+    public String getCodePostal() {
+        return this.codePostal;
+    }
+
+    public void setCodePostal(String codePostal) throws ExceptionPharma {
+
+        if (!Regex.isValid(codePostal, Regex.CODE_POSTAL)) {
+            throw new ExceptionPharma("Erreur dans le code postal ! Merci de corriger");
+        }
+        this.codePostal = codePostal;
+    }
+
+    public String getVille() {
+        return this.ville;
+    }
+
+    public void setVille(String ville) throws ExceptionPharma {
+
+        if (!Regex.isValid(ville, Regex.LETTRE)) {
+            throw new ExceptionPharma("Erreur dans la ville ! Merci de corriger");
+        }
+        this.ville = ville;
+    }
+
+    public String getTelephone() {
+        return this.telephone;
+    }
+
+    public void setTelephone(String telephone) throws ExceptionPharma {
+
+        if (!Regex.isValid(telephone, Regex.TELEPHONE)) {
+            throw new ExceptionPharma("Erreur dans le numéro de telephone ! Merci de corriger");
+        }
+        this.telephone = telephone;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) throws ExceptionPharma {
+        if (!Regex.isValid(email, Regex.EMAIL)) {
+            throw new ExceptionPharma("Erreur dans l'email ! Merci de corriger");
+        }
+        this.email = email;
+    }
+}
+
+
+//securise mon code faore un override, mettre les execption et regex
