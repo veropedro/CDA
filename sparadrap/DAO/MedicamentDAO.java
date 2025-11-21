@@ -1,158 +1,120 @@
 package fr.afpa.pompey.cda22045.DAO;
 
 
+import fr.afpa.pompey.cda22045.ExceptionPharma;
 import fr.afpa.pompey.cda22045.modele.Medicament;
 import fr.afpa.pompey.cda22045.connectionBDD.Singleton;
 
-import java.sql.Connection;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.*;
 import java.util.ArrayList;
-import java.time.LocalDate;
+import java.util.List;
 
-public class MedicamentDAO {
 
-    // CREATE - Ajouter un médicament
-    public static void ajouterMedicament(Medicament m) {
+public class MedicamentDAO extends DAO<Medicament> {
 
-        // Vérification avant insertion
-        if (existe(m.getNom())) {
-            System.out.println("⚠️ Médicament déjà présent, insertion annulée.");
-            return;
-        }
+    public MedicamentDAO() throws SQLException, IOException, ClassNotFoundException {
+        super(); // initialise la connexion
+    }
 
-        String sql = "INSERT INTO MEDICAMENT(medoc_nom, medoc_description, medoc_prix, medoc_date_expiration, medoc_quantite) VALUES (?, ?, ?, ?, ?)";
+    @Override
+    public Medicament create(Medicament entity) throws SQLException {
+        String sql = "INSERT INTO MEDICAMENT(medoc_nom, medoc_categorie, medoc_prix, medoc_dateMiseService, medoc_quantite) " +
+                "VALUES(?, ?, ?, ?, ?)";
 
-        try (Connection conn = Singleton.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            ps.setString(1, m.getNom());
-            ps.setString(2, m.getCategorie());
-            ps.setDouble(3, m.getPrix());
-            ps.setDate(4, Date.valueOf(m.getDateService()));
-            ps.setInt(5, m.getQuantite());
+        try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            ps.setString(1, entity.getNom());
+            ps.setString(2, entity.getCategorie());
+            ps.setDouble(3, entity.getPrix());
+            ps.setDate(4, Date.valueOf(entity.getDateService()));
+            ps.setInt(5, entity.getQuantite());
 
             ps.executeUpdate();
-            System.out.println("Médicament ajouté avec succès.");
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public static boolean existe(String nom) {
-        String sql = "SELECT COUNT(*) FROM medicament WHERE medoc_nom = ?";
-
-        try (Connection conn = Singleton.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            ps.setString(1, nom);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                return rs.getInt(1) > 0; // si COUNT > 0 → existe
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                if (rs.next()) {
+                    entity.setId(rs.getInt(1)); // ID généré par la base
+                }
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return false; // en cas de problème, on dit que ça n'existe pas
-    }
-
-
-    // READ - Lister tous les médicaments
-    public static ArrayList<Medicament> listerMedicaments() {
-        ArrayList<Medicament> liste = new ArrayList<>();
-        String sql = "SELECT * FROM MEDICAMENT";
-
-        try (Connection conn = Singleton.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-
-            while (rs.next()) {
-                Medicament m = new Medicament(
-                        rs.getString("medoc_nom"),
-                        rs.getString("medoc_categorie"),
-                        rs.getDouble("medoc_prix"),
-                        rs.getDate("medoc_dateMiseService").toLocalDate(),
-                        rs.getInt("medoc_quantite")
-                );
-                liste.add(m);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return liste;
-    }
-
-    // Afficher tous les médicaments
-    public static void afficherMedicaments() {
-        ArrayList<Medicament> liste = listerMedicaments();
-        System.out.println("Liste des médicaments :");
-        for (Medicament m : liste) {
-            System.out.println(m);
+            return entity;
         }
     }
 
-    // UPDATE - Modifier tous les champs d'un médicament
-    public static void modifierMedicament(int id, Medicament nouveau) {
-        String sql = "UPDATE MEDICAMENT SET medoc_nom = ?, medoc_categorie = ?, medoc_prix = ?, medoc_dateMiseService = ?, medoc_quantite = ? WHERE idMedicament = ?";
+    @Override
+    public boolean update(Medicament entity) throws SQLException {
+        String sql = "UPDATE MEDICAMENT SET medoc_nom=?, medoc_categorie=?, medoc_prix=?, medoc_dateMiseService=?, medoc_quantite=? " +
+                "WHERE idMedicament=?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, entity.getNom());
+            ps.setString(2, entity.getCategorie());
+            ps.setDouble(3, entity.getPrix());
+            ps.setDate(4, Date.valueOf(entity.getDateService()));
+            ps.setInt(5, entity.getQuantite());
+            ps.setInt(6, entity.getId());
 
-        try (Connection conn = Singleton.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            ps.setString(1, nouveau.getNom());
-            ps.setString(2, nouveau.getCategorie());
-            ps.setDouble(3, nouveau.getPrix());
-            ps.setDate(4, Date.valueOf(nouveau.getDateService()));
-            ps.setInt(5, nouveau.getQuantite());
-            ps.setInt(6, id);
-
-            ps.executeUpdate();
-            System.out.println("✅ Médicament modifié !");
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return ps.executeUpdate() > 0;
         }
     }
 
-    // DELETE - Supprimer un médicament
-    public static void supprimerMedicament(int id) {
-        String sql = "DELETE FROM MEDICAMENT WHERE idMedicament = ?";
-
-        try (Connection conn = Singleton.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
+    @Override
+    public boolean deleteById(Integer id) throws SQLException {
+        String sql = "DELETE FROM MEDICAMENT WHERE idMedicament=?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, id);
-            ps.executeUpdate();
-            System.out.println("🗑️ Médicament supprimé !");
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return ps.executeUpdate() > 0;
         }
     }
 
-    // MAIN - Exemple d'utilisation
-    public static void main(String[] args) {
+    @Override
+    public Medicament findById(Integer id) throws SQLException {
+        String sql = "SELECT * FROM MEDICAMENT WHERE idMedicament=?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return mapResultSetToMedicament(rs);
+                }
+            } catch (ExceptionPharma e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
 
-        // Ajouter un médicament
-        Medicament m = new Medicament("Doliprane", "Antidouleur", 3.50,
-                LocalDate.of(2025, 1, 1), 20);
-        ajouterMedicament(m);
+    @Override
+    public List<Medicament> findAll() throws SQLException {
+        String sql = "SELECT * FROM MEDICAMENT";
+        List<Medicament> medicaments = new ArrayList<>();
+        try (Statement st = connection.createStatement(); ResultSet rs = st.executeQuery(sql)) {
+            while (rs.next()) {
+                medicaments.add(mapResultSetToMedicament(rs));
+            }
+        } catch (ExceptionPharma e) {
+            throw new RuntimeException(e);
+        }
+        return medicaments;
+    }
 
-        // Lister
-        afficherMedicaments();
+    @Override
+    public void closeConnection() throws SQLException {
+        if (connection != null && !connection.isClosed()) {
+            connection.close();
+        }
+    }
 
-        // Modifier
-        Medicament mModifie = new Medicament("Paracetamol", "Antidouleur", 4.20,
-                LocalDate.of(2025, 1, 1), 25);
-        modifierMedicament(1, mModifie);
-
-
+    // Méthode de mapping ResultSet → Medicament
+    public Medicament mapResultSetToMedicament(ResultSet rs) throws SQLException, ExceptionPharma {
+        return new Medicament(
+                rs.getInt("idMedicament"),
+                rs.getString("medoc_nom"),
+                rs.getString("medoc_categorie"),
+                rs.getDouble("medoc_prix"),
+                rs.getDate("medoc_dateMiseService").toLocalDate(),
+                rs.getInt("medoc_quantite")
+        );
     }
 }
 

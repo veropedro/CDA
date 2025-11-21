@@ -1,27 +1,24 @@
 package fr.afpa.pompey.cda22045.DAO;
 import fr.afpa.pompey.cda22045.ExceptionPharma;
-import fr.afpa.pompey.cda22045.modele.Client;
+import fr.afpa.pompey.cda22045.modele.Medecin;
 
 import java.io.IOException;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientDAO extends DAO<Client> {
-
-    public ClientDAO() throws SQLException, IOException, ClassNotFoundException {
+public class MedecinDAO extends DAO<Medecin> {
+    public MedecinDAO() throws SQLException, IOException, ClassNotFoundException {
         super(); // initialise connection via DAO
     }
 
-
     @Override
-    public Client create(Client entity) throws SQLException {
-        String insertIntoClient = "INSERT INTO Client(nom, prenom, adresse, codePostal, ville, telephone, email, " +
-                "numeroSecu, dateNaissance, mutuelle, medecinTraitant) VALUES(?, ? , ?, ? ,?, ? ,?, ? ,?, ? ,?)";
+    public Medecin create(Medecin entity) throws SQLException {
+        String insertIntoMedecin = "INSERT INTO Medecin(nom, prenom, adresse, codePostal, ville, telephone, email, " +
+                "numeroAgreement) VALUES(?, ? , ?, ? , ? , ? , ? , ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(
-                insertIntoClient,
+                insertIntoMedecin,
                 PreparedStatement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setString(1, entity.getNom());
@@ -31,10 +28,7 @@ public class ClientDAO extends DAO<Client> {
             preparedStatement.setString(5, entity.getVille());
             preparedStatement.setString(6, entity.getTelephone());
             preparedStatement.setString(7, entity.getEmail());
-            preparedStatement.setString(8, entity.getNumeroSecu());
-            preparedStatement.setDate(9, Date.valueOf(entity.getDateNaissance()));
-            preparedStatement.setString(10, entity.getMutuelle());
-            preparedStatement.setString(11, entity.getMedecinTraitant());
+            preparedStatement.setString(8, entity.getNumeroAgreement());
 
             preparedStatement.executeUpdate();
 
@@ -48,9 +42,9 @@ public class ClientDAO extends DAO<Client> {
     }
 
     @Override
-    public boolean update(Client entity) throws SQLException {
-        String sql = "UPDATE Client SET nom=?, prenom=?, adresse=?, codePostal=?, ville=?, telephone=?, email=?, " +
-                "numeroSecu=?, dateNaissance=?, mutuelle=?, medecinTraitant=? WHERE id=?";
+    public boolean update(Medecin entity) throws SQLException {
+        String sql = "UPDATE Medecin SET nom=?, prenom=?, adresse=?, codePostal=?, ville=?, telephone=?, email=?, " +
+                "numeroAgreement=? WHERE id=?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, entity.getNom());
             ps.setString(2, entity.getPrenom());
@@ -59,11 +53,8 @@ public class ClientDAO extends DAO<Client> {
             ps.setString(5, entity.getVille());
             ps.setString(6, entity.getTelephone());
             ps.setString(7, entity.getEmail());
-            ps.setString(8, entity.getNumeroSecu());
-            ps.setDate(9, Date.valueOf(entity.getDateNaissance()));
-            ps.setString(10, entity.getMutuelle());
-            ps.setString(11, entity.getMedecinTraitant());
-            ps.setInt(12, entity.getId());
+            ps.setString(8, entity.getNumeroAgreement());
+            ps.setInt(9, entity.getId());
 
             return ps.executeUpdate() > 0;
         }
@@ -71,7 +62,7 @@ public class ClientDAO extends DAO<Client> {
 
     @Override
     public boolean deleteById(Integer pId) throws SQLException {
-        String sql = "DELETE FROM Client WHERE id=?";
+        String sql = "DELETE FROM Medecin WHERE id=?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, pId);
             return ps.executeUpdate() > 0;
@@ -79,13 +70,13 @@ public class ClientDAO extends DAO<Client> {
     }
 
     @Override
-    public Client findById(Integer pId) throws SQLException {
-        String sql = "SELECT * FROM Client WHERE id=?";
+    public Medecin findById(Integer pId) throws SQLException {
+        String sql = "SELECT * FROM Medecin WHERE id=?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, pId);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return mapResultSetToClient(rs);
+                    return mapResultSetToMedecin(rs);
                 }
             }
         }
@@ -93,15 +84,15 @@ public class ClientDAO extends DAO<Client> {
     }
 
     @Override
-    public List<Client> findAll() throws SQLException {
-        String sql = "SELECT * FROM Client";
-        List<Client> clients = new ArrayList<>();
+    public List<Medecin> findAll() throws SQLException {
+        String sql = "SELECT * FROM Medecin";
+        List<Medecin> medecins = new ArrayList<>();
         try (Statement st = connection.createStatement(); ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) {
-                clients.add(mapResultSetToClient(rs));
+                medecins.add(mapResultSetToMedecin(rs));
             }
         }
-        return clients;
+        return medecins;
     }
 
     @Override
@@ -111,10 +102,10 @@ public class ClientDAO extends DAO<Client> {
         }
     }
 
-    // méthode utilitaire pour créer un Client à partir d'un ResultSet
-    private Client mapResultSetToClient(ResultSet rs) throws SQLException {
+
+    private Medecin mapResultSetToMedecin(ResultSet rs) throws SQLException {
         try {
-            return new Client(
+            return new Medecin(
                     rs.getInt("id"),
                     rs.getString("nom"),
                     rs.getString("prenom"),
@@ -123,13 +114,10 @@ public class ClientDAO extends DAO<Client> {
                     rs.getString("ville"),
                     rs.getString("telephone"),
                     rs.getString("email"),
-                    rs.getString("numeroSecu"),
-                    rs.getDate("dateNaissance").toLocalDate(),
-                    rs.getString("mutuelle"),
-                    rs.getString("medecinTraitant")
+                    rs.getString("numeroAgreement")
             );
         } catch (ExceptionPharma e) {
-            throw new SQLException("Erreur lors de la création de l'objet Client depuis la BDD", e);
+            throw new SQLException("Erreur lors de la création du médecin", e);
         }
     }
 }

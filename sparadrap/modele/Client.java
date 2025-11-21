@@ -41,7 +41,7 @@ public class Client extends Personne{
         this.numeroSecu = numeroSecu;
     }
 
-    public Date getDateNaissance() {
+    public LocalDate getDateNaissance() {
         return this.dateNaissance;
     }
 

@@ -15,6 +15,7 @@ import java.io.IOException;
 
 public class Medicament {
 
+    private int id;
     private String nom;
     private String categorie;
     private double prix;
@@ -49,14 +50,31 @@ public class Medicament {
         }
     }
 
-    public Medicament(String nom, String categorie, double prix, LocalDate dateService, int quantite){
-        this.nom = nom;
-        this.categorie = categorie;
-        this.prix = prix;
-        this.dateService = dateService;
-        this.quantite = quantite;
+    public Medicament(int id, String nom, String categorie, double prix, LocalDate dateService, int quantite) throws ExceptionPharma {
+        this.setId(id);
+        this.setNom(nom);
+        this.setCategorie(categorie);
+        this.setPrix(prix);
+        this.setDateService(String.valueOf(dateService));
+        this.setQuantite(quantite);
 
         logger.info("Création du médicament : " + this.toString());
+    }
+
+
+    public int getId() {return this.id; }
+
+    public void setId(int id) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("L'id doit être strictement positif.");
+        }
+
+        // Si ton id est déjà défini, on empêche de le modifier
+        if (this.id != 0) {
+            throw new IllegalStateException("L'id ne peut pas être modifié une fois défini.");
+        }
+
+        this.id = id;
     }
 
     public String getNom() {
