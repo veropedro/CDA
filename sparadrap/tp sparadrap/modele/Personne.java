@@ -123,7 +123,21 @@ public class Personne {
         }
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "Personne {" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", codePostal='" + codePostal + '\'' +
+                ", ville='" + ville + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
 }
 
 
-//securise mon code faore un override, mettre les execption et regex

@@ -28,5 +28,12 @@ public class Medecin extends Personne{
         }
         this.numeroAgreement = numeroAgreement;
     }
+    @Override
+    public String toString() {
+        return "Medecin {" +
+                super.toString() +
+                ", numeroAgreement='" + numeroAgreement + '\'' +
+                '}';
+    }
 
 }

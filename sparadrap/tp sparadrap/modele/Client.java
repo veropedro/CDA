@@ -86,4 +86,11 @@ public class Client extends Personne{
 
     }
 
+    @Override
+    public String toString() {
+        return getNom() + " " + getPrenom(); // affichage simple pour la ComboBox
+    }
+
+
+
 }
