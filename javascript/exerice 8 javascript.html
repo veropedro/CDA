@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<title>Utilisation d'un test logique</title>
+<meta charset="UTF-8">
+<script type="text/javascript">
+
+// 2. Création du tableau
+let tab = [-2, 1, 4];
+
+// 3. Fonction soustrait
+function soustrait(x) {
+    if (x >= 0) {
+        return x - 2; // si positif ou nul, on soustrait 2
+    } else {
+        return "Nombre négatif!"; // sinon on renvoie un message
+    }
+}
+
+// 4. Fonction affiche
+function affiche() {
+    // Affiche le résultat du premier élément
+    alert(soustrait(tab[0]));
+
+    // Affiche le résultat du dernier élément
+    alert(soustrait(tab[tab.length - 1]));
+}
+
+</script>
+</head>
+<body>
+<h1>Utilisation d'un test logique</h1>
+<p>
+Cliquez sur le bouton pour lancer la fonction : 
+<button onclick="affiche()">Lancer la fonction</button>
+</p>
+</body>
+</html>

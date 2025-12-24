@@ -1,0 +1,89 @@
+<html>
+<head>
+    <title>references.html</title>
+    <link rel="stylesheet" href="stylesAfpa.css">
+</head>
+<body>  
+
+    <nav id="navbar">
+         <!-- Logo à gauche -->
+        <div class="logo">
+            <img src="logoAfpa.jpeg" alt="Logo AFPA" />
+        </div> 
+
+        <!-- Liens de navigation à droite -->
+        <ul class="nav-links">
+            <li><a href="accueil.html">Accueil</a></li>
+            <li><a href="formation.html">La formation</a></li>
+            <li><a href="temoignages.html">Témoignages</a></li>
+            <li><a href="references.html">Mes références</a></li> 
+            <li><a href="contact.html">Contactez-nous</a></li>
+        </ul>
+    </nav>
+
+    <h1 class="h1-contact">Contactez-nous</h1>
+
+    <form class="contact-form">
+
+    <div class="form-row">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required>
+    </div>
+
+    <div class="form-row">
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" name="prenom" required>
+    </div>
+
+    <div class="form-row">
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+
+    <div class="form-row">
+        <label for="tel">Téléphone :</label>
+        <input type="tel" id="tel" name="tel" required>
+    </div>
+
+    <!-- Statut -->
+    <div class="form-row">
+        <label>Statut :</label>
+        <div class="checkbox-column">
+            <label><input type="checkbox" name="statut" value="demandeur"> Demandeur d'emploi</label>
+            <label><input type="checkbox" name="statut" value="transition"> Salarié en transition pro</label>
+            <label><input type="checkbox" name="statut" value="autre"> Autre</label>
+        </div>
+    </div>
+
+    <!-- Modalités préférées -->
+    <div class="form-row">
+        <label>Modalité préférée :</label>
+        <div class="checkbox-column">
+            <label><input type="checkbox" name="modalite" value="presentiel"> Formation en présentiel</label>
+            <label><input type="checkbox" name="modalite" value="distanciel"> 100% distanciel</label>
+            <label><input type="checkbox" name="modalite" value="alternance"> Alternance</label>
+            <label><input type="checkbox" name="modalite" value="aucune"> Pas de préférence</label>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <label for="ville">Lieu de résidence :</label>
+        <select name="ville" id="ville" required>
+            <option value="">-- Choisir une ville --</option>
+            <option value="nancy">Nancy</option>
+            <option value="metz">Metz</option>
+            <option value="epinal">Épinal</option>
+            <option value="strasbourg">Strasbourg</option>
+            <option value="luxembourg">Luxembourg</option>
+            <option value="autre">Autre</option>
+        </select>
+    </div>
+
+    <button type="submit">Envoyer</button>
+</form>
+
+
+
+</body>
+</html>  
+

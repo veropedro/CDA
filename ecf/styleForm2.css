@@ -1,0 +1,37 @@
+/* ===== HAUT DE PAGE ===== */
+#haut-page {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 5px solid #166534;
+  padding: 10px 20px;
+}
+
+#haut-page h1 {
+  color: #166534;
+  margin: 0;
+}
+
+#haut-page .logo {
+  height: 20px;
+  width: auto;
+}
+
+input {
+  width: 100%; /* l’input prend toute la largeur */
+  padding: 5px;
+}
+
+#formulaire1 {
+  width: 100%;
+}
+
+.champ label {
+  display: inline-block;
+  width: 120px;      /* largeur fixe pour aligner les labels */
+}
+
+.champ input {
+  width: calc(100% - 130px); /* prend le reste de la ligne */
+  padding: 5px;
+}

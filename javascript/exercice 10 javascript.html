@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test Rectangle / Square</title>
+</head>
+
+<body>
+<h1>Test des classes Rectangle et Square</h1>
+
+<script>
+// Classe Rectangle
+class Rectangle {
+    constructor(width, height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    get isValid() {
+        return this.width > 0 && this.height > 0;
+    }
+
+    get perimeter() {
+        if (!this.isValid) return 0;
+        return 2 * (this.width + this.height);
+    }
+
+    get area() {
+        if (!this.isValid) return 0;
+        return this.width * this.height;
+    }
+
+    isBiggerThan(other) {
+        return this.area > other.area;
+    }
+}
+
+// Classe Square
+class Square extends Rectangle {
+    constructor(size) {
+        super(size, size);
+    }
+}
+
+// Tests :
+const r = new Rectangle(10, 20);
+console.log(r.perimeter);     // 60
+console.log(r.isValid);        // true
+
+const r2 = new Rectangle(-10, 20);
+console.log(r2.isValid);       // false
+
+const c = new Square(10);
+console.log(c.perimeter);      // 40
+
+console.log(r.isBiggerThan(c)); // true
+</script>
+
+</body>
+</html>
+

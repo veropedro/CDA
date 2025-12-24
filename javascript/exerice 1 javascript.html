@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>Écriture d'une fonction simple</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript">
+
+function maFonction() {
+  // Demandez la largeur
+  let largeur = prompt("Entrez la largeur :");
+
+  // Demandez la longueur
+  let longueur = prompt("Entrez la longueur :");
+
+  // ------- Calcul de la SURFACE --------
+  // let resultat = longueur * largeur;
+  // alert("La surface est : " + resultat);
+
+  // ------- Calcul du PÉRIMÈTRE --------
+  let perimetre = 2 * (Number(longueur) + Number(largeur));
+  alert("Le périmètre est : " + perimetre);
+}
+
+</script>
+</head>
+<body>
+<h1>Écriture d'une fonction simple</h1>
+<p>Cliquez sur le bouton pour lancer la fonction :
+  <button onclick="maFonction()">Lancer la fonction</button>
+</p>
+</body>
+</html>

@@ -1,0 +1,61 @@
+body {
+    background-color: #C6C0A0;
+    font-family: Georgia;
+    
+}
+
+h2 {
+    color: #7D775C;          /* couleur du texte */
+    font-size: 32px;         /* taille de la police (tu peux augmenter si tu veux) */
+    font-weight: bold;       /* texte en gras */
+    font-style: oblique;     /* texte en oblique (comme italique) */
+    text-align: center;      /* texte centré */
+    letter-spacing: 1px;     /* espacement entre les lettres */
+}
+
+h3 {
+    color: #7D775C;          /* couleur du texte */
+    font-size: 20px;         /* taille de la police (tu peux augmenter si tu veux) */
+    font-weight: bold;       /* texte en gras */
+    letter-spacing: 1px;     /* espacement entre les lettres */
+}
+
+li {
+    line-height: 32px;   /* espace vertical entre les lignes */
+}
+
+.vert {
+    color: green;
+}
+
+#duree {
+    color: red;           /* texte en rouge */
+    font-size: 22px;      /* taille augmentée */
+    text-decoration: underline; /* souligné */
+}
+
+#container {
+    border: 1px solid #555753;        /* Bordure fine autour de la boîte */
+    background-color: #FFFFFF;       /* Fond blanc cassé */
+    font-family: Georgia, serif;      /* Texte écrit avec la police Georgia */
+    font-size: 75%;                   /* Taille du texte réduite à 75% */
+    color: #555753;                   /* Couleur du texte en gris foncé */
+
+    -moz-border-radius: 10px;         /* Coins arrondis (version Firefox) */
+    -webkit-border-radius: 10px;      /* Coins arrondis (version Chrome/Safari) */
+    border-radius: 10px;              /* Coins arrondis (standard actuel) */
+
+    box-shadow: 8px 8px 12px #aaa;    /* Ombre portée autour de la boîte */
+    -moz-box-shadow: 8px 8px 12px #aaa;   /* Ombre (Firefox ancien) */
+    -webkit-box-shadow: 8px 8px 12px #aaa;/* Ombre (Chrome/Safari anciens) */
+}
+
+body {
+    width: 80%;            /* La page occupe 80% de la largeur de l’écran */
+    margin-left: auto;     /* Centre le body horizontalement (à gauche) */
+    margin-right: auto;    /* Centre le body horizontalement (à droite) */
+}
+
+
+
+

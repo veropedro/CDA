@@ -1,4 +1,4 @@
-use AirdeJava;
+ use AirdeJava;
 
 -- METTRE EN PLACE LA BASE DE DONNÉES
 -- 1. Donner la séquence en SQL pour créer un compte utilisateur avec des droits de consultations (lecture et écriture) de la base de données mais sans les droits d’administrations de la base de données.

@@ -1,0 +1,444 @@
+exercice 1 nombre positif et pair:
+
+
+variable
+n: entier
+ok: bouleen
+
+debut
+	repeter
+	ecrire (n)
+		si n>0 et si n mod 2 = 0
+		si non ecrire("erreur") si n<0 et si n mod 2 = 1
+		jusqu'a ok = vrai
+	finsi
+fin
+
+
+
+exercice 2 patate:
+
+
+variable
+n : entier
+x : nombre de pomme de terre par trajet
+y: 1 trajet
+
+debut
+ecrire(n)
+afficher(n)
+tant que n > 0 faire y
+	si n = 3 ecrire (y = 1)
+	si n < 3 alors x mod 3 = 1 ou x mod 3 = 2
+	jusqu'a n < 0
+	sinon fin
+	ecrire(y)
+fin
+
+
+
+exercice somme nombre premier
+
+
+varibale
+N := entier
+I := 1
+Resultat := lireEntier(1)
+
+debut
+Tantque i < ou = N
+   Faire résultat := resultat + i
+   Faire i = i + 1
+Fin tant que 
+Afficher resultat
+fin
+
+
+
+varibale
+N := entier
+I := 1
+Resultat := lireEntier(1)
+
+debut
+repeter si i < ou = N
+   Faire résultat := resultat + i
+   Faire i = i + 1
+   jusqu'a que i > N 
+   afficher erreur
+Fin si
+Afficher resultat
+fin
+
+
+varibale
+N := entier
+I := 1
+Resultat := lireEntier(1)
+
+debut
+pour i allant de x à N
+   Faire résultat := resultat + i
+   Faire i = i + 1
+Afficher resultat
+fin
+
+
+
+exercice 4 puissance:
+
+variable
+x : entier
+y : entier
+
+lire(x)
+lire(y)
+fonction puissance ( entier x , entier y )
+si y = 0 resultat = 0
+si x = 0 resultat = 0 
+si x > 0 
+
+
+exercice 3 equation segond degré
+a: entier
+b: entier
+c: entier
+delta: reel
+resultat: reel
+
+delta: b^2 - 4*a*c
+
+debut 
+si delta<0 alors resultat = nul  affciher(erreur)
+si delta=0 alors resultat := x= -b/(2*a)
+si delta>0 alors resultat=(-b-√Δ)/(2*a) ou resultat= (-b+√Δ)/(2*a)
+
+afficher(resultat)
+fin
+
+
+
+exercice 4.1
+
+variable
+nombres : 9
+notes = [1,6,10,12,8,15,6,18,11]
+moyenne = 1
+
+debut 
+	pour i allant de 1 a nombres(9)
+		ecrire notes(i)
+	finpour
+
+	pour i allant de 1 a nombres(9)
+		faire moyenne = (moyenne * notes(i))/nombres
+	finpour
+
+fin 
+
+
+exercice 4.2
+
+
+variables
+longueurtb = 9
+tableau(i) : [1,6,10,12,8,15,6,18,11]
+i = 1
+
+debut
+
+pour i allant de 1 a longueurtb
+	ecrire tableau[i]
+
+	permutation vrai
+	tant que permutation := faux
+		pour i allant de 1 a longueurtb
+			SI tableau[i] > tableau[i+1] ALORS
+				temp = tableau[i]
+				tableau[i] = tableau[i+1]
+				tableau[i+1] = temp
+    		FIN_SI
+		finpour
+	fintantque
+fin	
+
+
+
+
+variables
+N = 9
+tableau(i) : [1,6,10,12,8,15,6,18,11]
+i = 1
+
+debut
+
+pour i allant de 1 a N
+	ecrire tableau[i]
+
+		pour i allant de 1 a N - 1 faire
+				temp = t[i]
+				j = i -1
+				tant que j>=0 et t[j] > temp
+				t[j+1] = t[j]
+				j ← j - 1
+        Fin Tant que
+        T[j + 1] ← temp
+    Fin Pour
+   ecrire tableau 
+fin	
+
+
+
+exercice 4.3 Algorithme RechercheDichotomique
+
+    varaible :
+        - t : tableau trié (le dictionnaire)
+        - x : valeur recherchée
+        - n : taille du tableau
+        deb = 0
+        fin = n - 1
+        ok = faux
+		
+		debut
+
+        Tant que deb ≤ fin et ok = faux faire
+            mil = (deb + fin) / 2
+
+            Si T[mil] = x alors
+                ok = vrai
+            Sinon si T[mil] < x alors
+                deb = mil + 1
+            Sinon
+                fin = mil - 1
+            Fin Si
+        Fin Tant que
+
+
+
+exerice 4.4 tableau 2D
+
+
+lgorithme TrouveMax2D
+    variable :
+        - T : tableau 2D de dimensions 12 x 8 (12 lignes, 8 colonnes)
+    
+    Début
+        max = T[0][0]
+
+        Pour i de 0 à 11 faire  
+            Pour j de 0 à 7 faire   
+                Si T[i][j] > max alors
+                    max = T[i][j]   
+                Fin Si
+            Fin Pour
+        Fin Pour
+
+        Afficher "La plus grande valeur est", max
+    Fin
+Fin Algorithme
+
+
+
+
+
+exercice 5 recherchee dichotomique
+ 
+
+variables:
+
+tableau[10], x, deb , fin , n : entiers
+t:=[-2,-1,0,13,24,37,44,56,99,117]
+x: valeur recherché
+n: taille tableau      //n = 10
+deb: 0
+fin: n -1               //n = 9
+i: -1                  //position ou se trouvera x 
+ok: bouléen
+
+
+debut
+
+   pour j de deb a fin faire
+   	afficher t[j]
+   finpour  
+   ecrire "entrez la valeur a rechercher"
+   lire x
+
+   tant que deb <= fin et ok = faux faire
+	mil= (deb + fin) / 2        
+
+		si t[mil] = x alors 
+		ok = vrai et i = mil
+
+		sinon si t[mil] < x alors
+		deb = mil + 1
+
+		sinon si t[mil] > x alors 
+		fin = mil - 1
+
+		finsi
+    fin tant que
+
+	si ok = vrai 
+	afficher (x , "se trouve au rang" , i , "dans le tableau")
+	sinon afficher ("-1")
+ 
+fin
+
+
+
+ 
+exercice 6 : tableau 2d et factorielles
+
+
+
+
+variables:
+
+t : tableau 2D [2*10] d'entiers
+n : entier, taille du tableau
+
+
+fonction factorielle = calculfacto
+	calculfact = 1
+
+	pour i de 1 à n faire 
+		calculfact = calculfact * i
+	fin pour
+	retourner calculfact
+fin fonction
+
+	pour i de 0 à 9 faire 
+		t[0][i] = i+1                 // lugne entiers de 1 a 10
+		t[1][i] = calculfacto(i+1)    // ligne des factorielles de 1 a 10
+
+		// t[0] correspond a la premiere ligne du tableau, indice 0	
+		// t[1] correspond a la premiere ligne du tableau, indice 1
+
+	fin pour
+
+	pour i de 0 à 9 faire
+		afficher t[0][i] , t[1][i]
+	fin pour
+
+	ecrire "entrez une valeur"		// valeur = x
+	lire x
+
+	pour x de t[1][i] faire
+		
+			afficher ("la factorielle de" , x , "est :" , t[1][x] )
+	fin pour
+
+fin
+
+
+
+
+version corriger par chatgpt:
+la derniere partie est fausse car x n'est pas une variable qu'on peut mettre dans une boucle
+
+
+
+
+variables:
+
+t : tableau 2D [2*10] d'entiers
+n : entier, taille du tableau
+
+
+fonction factorielle = calculfacto
+	calculfact = 1
+
+	pour i de 1 à n faire 
+		calculfact = calculfact * i
+	fin pour
+	retourner calculfact
+fin fonction
+
+	pour i de 0 à 9 faire 
+		t[0][i] = i+1                 // lugne entiers de 1 a 10
+		t[1][i] = calculfacto(i+1)    // ligne des factorielles de 1 a 10
+
+		// t[0] correspond a la premiere ligne du tableau, indice 0	
+		// t[1] correspond a la premiere ligne du tableau, indice 1
+
+	fin pour
+
+	pour i de 0 à 9 faire
+		afficher t[0][i] , t[1][i]
+	fin pour
+
+	ecrire "Entrez une valeur entre 1 et 10 :"		// valeur = x
+	lire x
+
+	si x ≥ 1 et x ≤ 10 alors
+  		afficher  " La factorielle de " ,  x , " est : ", t[1][x - 1]
+  	sinon
+   		 afficher  "Erreur : valeur hors de l'intervalle"
+  	fin si
+
+fin
+
+
+
+exercice 5.1: occurence tableau de 100
+
+
+variable:
+t[100] : tabelau de 100 entiers
+i , x , compteur : entiers
+compteur = 0
+
+debut
+	ecrrire une valeur entre 0 et 100
+	lire x
+
+	pour i allant de 0 à 100 faire
+		si t[i] = x
+			compteur = compteur +1
+		fin si
+	fin pour
+	afficher "la valeur de" , x , "se retrouve" , compteur , "fois dans le tableau"
+fin
+
+
+
+
+
+exercice 2: factorielle
+
+
+Variables
+    N, i, resultat : ENTIER
+
+DEBUT
+    N ← lireEntier()
+    resultat ← 1
+    i ← 1
+
+    TANT QUE i ≤ N FAIRE
+        resultat ← resultat * i
+        i ← i + 1
+    FIN TANT QUE
+
+    ECRIRE "La factorielle de", N, "est :", resultat
+FIN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

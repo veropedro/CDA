@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<title>Exercice sur les boucles for</title>
+<meta charset="UTF-8"/>
+<script>
+
+// 1. Fonction boucle()
+function boucle() {
+    // Crée un tableau vide
+    let tableau = [];
+
+    // Boucle pour remplir le tableau avec i²
+    for (let i = 0; i < 3; i++) {
+        tableau[i] = i * i; // i²
+    }
+
+    // Affiche le tableau dans une boîte d'alerte
+    alert("Tableau avec i² : " + tableau);
+}
+
+// 2. Fonction boucle2()
+function boucle2() {
+    // Demande à l'utilisateur la longueur du tableau
+    let longueur = prompt("Entrez la longueur du tableau :");
+
+    // Convertir la saisie en nombre
+    longueur = Number(longueur);
+
+    // Vérifier que c'est un nombre valide
+    if (isNaN(longueur) || longueur <= 0) {
+        alert("Veuillez entrer un nombre valide supérieur à 0 !");
+        return;
+    }
+
+    // Crée un tableau vide
+    let tableau = [];
+
+    // Boucle pour remplir le tableau avec i²
+    for (let i = 0; i < longueur; i++) {
+        tableau[i] = i * i;
+    }
+
+    // Affiche le tableau
+    alert("Tableau avec i² : " + tableau);
+}
+
+</script>
+</head>
+<body>
+<h1>Boucles for</h1>
+<button onclick="boucle()">Cliquez-moi!</button>
+<button onclick="boucle2()">Cliquez-moi aussi!</button>
+</body>
+</html>

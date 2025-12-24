@@ -1,0 +1,276 @@
+
+body {
+    font-family: 'GOTHAM', Arial, sans-serif; /* police principale GOTHAM, fallback Arial */
+    margin: 0;        /* supprime les marges par défaut du navigateur */
+    padding: 0;       /* supprime le padding par défaut */
+    font-size: 16px;                          /* taille du texte par défaut */
+    line-height: 1.6;                          /* espace entre les lignes pour une lecture agréable */
+    margin: 0;
+}
+
+/* Style de la barre de navigation */
+#navbar {
+    display: flex;                 /* Flexbox : place logo et liens sur la même ligne */
+    align-items: center;           /* centre verticalement le logo et les liens */
+    justify-content: space-between;/* espace entre le logo et les liens */
+    background-color: #42AE00;     /* couleur de fond verte AFPA */
+    padding: 10px 20px;            /* espace intérieur haut/bas et gauche/droite */
+}
+
+/*Logo */
+#navbar .logo img {
+    height: 50px;                  /* définit la hauteur du logo */
+}
+
+/* Liste des liens */
+#navbar .nav-links {
+    list-style: none;               /* supprime les puces */
+    display: flex;                  /* place les liens sur une ligne */
+    margin: 0;                      /* supprime la marge autour de la liste */
+    padding: 0;                     /* supprime le padding autour de la liste */
+}
+
+/*Chaque lien */
+#navbar .nav-links li {
+    margin-left: 20px;              /* espace entre chaque lien */
+}
+
+/*  Style des liens eux-mêmes */
+#navbar .nav-links a {
+    text-decoration: none;          /* supprime le soulignement */
+    color: white;                   /* texte blanc sur fond vert */
+    font-weight: bold;              /* texte en gras */
+    padding: 8px 12px;              /* espace autour du texte pour le rendre plus grand et cliquable */
+    transition: background-color 0.3s; /* effet de transition quand on survole le lien */
+}
+
+/*Effet au survol */
+#navbar .nav-links a:hover,
+#navbar .nav-links a:focus {
+    background-color:  #62C225;      /* fond clair au survol */
+    color: #508768;                 /* texte vert foncé sur fond clair */
+    border-radius: 5px;             /* coins arrondis */
+}
+
+/* Ajoute une barre blanche entre les liens */
+#navbar .nav-links li {
+    margin-left: 20px;            /* espace entre les liens */
+    position: relative;            /* nécessaire pour placer le séparateur */
+}
+
+/* Crée le séparateur vertical sauf pour le premier élément */
+#navbar .nav-links li:not(:first-child)::before {
+    content: "|";                  /* le symbole barre verticale */
+    color: white;                  /* couleur blanche */
+    position: absolute;            /* position absolue par rapport au lien */
+    left: -10px;                   /* place la barre à gauche du lien */
+}
+
+
+
+.cta-button {
+    display: inline-block;          /* permet de donner un padding */
+
+    background-color: #42AE00;      /* vert AFPA */
+    color: white;                   /* texte blanc */
+    font-weight: bold;
+    font-family: 'GOTHAM', Arial, sans-serif;
+    padding: 12px 25px;             /* espace autour du texte */
+    text-decoration: none;          /* supprime le soulignement du lien */
+    border-radius: 5px;             /* coins arrondis */
+    transition: background-color 0.3s; /* effet au survol */
+}
+
+/* Effet au survol */
+.cta-button:hover {
+    background-color: #62C225;      /* vert plus clair au survol */
+    color: white;                   /* texte reste blanc */
+}
+
+
+
+/* FORMATION */
+
+.image-container {
+    display: flex;              /* active le flexbox */
+    justify-content: center;    /* centre horizontalement */
+    margin: 0;             /* pas de marge au-dessus ou en dessous */
+}
+
+.image-formation {
+    width: 80%;     /* prend toute la largeur du conteneur des colonnes */
+    height: auto;
+}
+
+
+.conteneur-2colonnes {
+    display: flex;     /* place les éléments côte à côte */
+    gap:10px;         /* espace entre les colonnes */
+    padding: 60px;
+    width: 700px;                 /* largeur totale du conteneur */
+    margin: 0 auto;               /* centre le conteneur horizontalement */
+    align-items: stretch; /* les colonnes auront la même hauteur */
+
+}
+
+
+.colonne-gauche {
+    width: 300px;
+    padding: 20px;
+    background-color: #FFFFFF; /* fond blanc */
+}
+
+.colonne-gauche .partie {
+    background-color: #F5F5F5;  
+    margin-bottom: 50px;        /* espace entre les parties */
+    padding: 10px;              /* espace intérieur */
+}
+
+.colonne-droite {
+    background-color: #abe157;  
+    width: 300px;
+    padding: 20px;
+    border: 8px;
+    color: white; 
+}
+
+.h1-formation {
+    text-align: center;
+    margin: 50px;
+}
+
+
+
+/* TEMOIGNAGE */
+
+/* Conteneur de tous les témoignages */
+.temoignages-container {
+    display: flex;         /* pour placer les cartes côte à côte */
+    gap: 20px;             /* espace entre les cartes */
+    flex-wrap: wrap;       /* permet de passer à la ligne si écran trop petit */
+    justify-content: center; /* centre les cartes horizontalement */
+    padding: 40px 0;
+}
+
+/* Chaque carte */
+.carte-temoignage {
+    width: 250px;            /* largeur de la carte */
+    padding: 20px;
+    border: 1px solid #42AE00; /* bordure verte AFPA */
+    border-radius: 12px;      /* coins légèrement arrondis */
+    text-align: center;       /* centre le texte et la photo */
+    background-color: #ffffff; /* fond blanc */
+}
+
+/* Photo du stagiaire */
+.photo-temoignage {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;       /* rend la photo ronde */
+    object-fit: cover;        /* recadre si nécessaire */
+    margin-bottom: 10px;
+}
+ 
+/* Nom et fonction */
+.carte-temoignage h3 {
+    margin: 5px 0;
+}
+
+.carte-temoignage .fonction {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Texte du témoignage */
+.carte-temoignage .texte-temoignage {
+    font-size: 14px;
+    color: #333;
+}
+
+
+
+/* REFERENCES */
+
+.titre-reference {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.grid-container {
+    margin: 50px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colonnes */
+    gap: 15px;
+}
+
+.grid-container img {
+    width: 80%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+
+
+/* CONTACT */
+
+.h1-contact {
+    margin : 20;
+    margin-top: 50;
+    margin-bottom: 50;
+    font-size : 40;
+
+}
+
+.contact-form {
+    width: 350px;
+    margin: 20;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-family: Arial, sans-serif;
+}
+
+
+.form-row {
+    display: flex;
+    align-items: flex-start;  /* alignement vertical en haut pour les checkbox */
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.form-row label:first-child {
+    width: 150px;             /* largeur fixe pour la colonne des labels */
+    font-weight: bold;
+    margin-top: 4px;          /* petit décalage pour aligner verticalement avec inputs */
+}
+
+.form-row input[type="text"],
+.form-row input[type="email"],
+.form-row input[type="tel"],
+.form-row select {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.checkbox-column {
+    display: flex;
+    flex-direction: column;   /* aligne les checkbox verticalement */
+    gap: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+button:hover {
+    background-color: #357ec7;
+}

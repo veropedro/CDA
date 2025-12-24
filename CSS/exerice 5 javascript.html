@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Méthodes des tableaux</title>
+<script>
+function go(){
+
+    // 1. Je crée un tableau avec les nombres demandés
+    let fibo = [1, 1, 2, 3, 5, 8];
+    console.log("1 - Tableau de départ :", fibo);
+
+    // 2. J'ajoute 13 à la fin du tableau
+    fibo.push(13); // push = ajouter à la fin
+
+    //   J'ajoute 0 au début du tableau
+    fibo.unshift(0); // unshift = ajouter au début
+
+    console.log("2 - Après ajout de 0 et 13 :", fibo);
+
+    // 3. Je crée un nouveau tableau qui contient
+    //    le reste de la division par 4 pour chaque nombre
+    let fibo2 = [];
+
+    for(let i = 0; i < fibo.length; i++){
+        fibo2.push(fibo[i] % 4); 
+        // % 4 = reste de la division par 4
+    }
+
+    console.log("3 - Tableau avec les restes :", fibo2);
+
+    // 4. Je trie le tableau dans l’ordre croissant
+    fibo2.sort(function(a, b){
+        return a - b; // méthode simple pour trier du plus petit au plus grand
+    });
+
+    console.log("4 - Tableau trié :", fibo2);
+}
+</script>
+</head>
+<body>
+<button onclick="go()">Lancement</button>
+</body>
+</html>

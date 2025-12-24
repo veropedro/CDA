@@ -1,0 +1,34 @@
+#menu {
+margin: 0;
+padding: 0;
+font: bold 1em "georgia" ,verdana;
+list-style-type: none;
+}
+
+#menu a {
+  display: block;               /* transforme le lien en bloc pour qu'il prenne toute la largeur définie */
+  margin: 5%;                   /* espace autour du bloc (haut, bas, gauche, droite) */
+  color: #508768;               /* couleur du texte par défaut */
+  text-decoration: none;        /* supprime le soulignement du lien */
+  line-height: 2em;             /* hauteur de ligne pour donner de l'espace vertical dans le bloc */
+  width: 80%;                   /* largeur du bloc = 80% de son parent <ul> */
+  border: 1px solid blue;       /* bordure bleue autour du bloc */
+  background-color: #BDD7B5;   /* couleur de fond du bloc */
+  text-align: center;       
+  
+  -moz-border-radius: 10px;         /* Coins arrondis (version Firefox) */
+    -webkit-border-radius: 10px;      /* Coins arrondis (version Chrome/Safari) */
+    border-radius: 10px;              /* Coins arrondis (standard actuel) */
+
+    box-shadow: 8px 8px 12px #aaa;    /* Ombre portée autour de la boîte */
+    -moz-box-shadow: 8px 8px 12px #aaa;   /* Ombre (Firefox ancien) */
+    -webkit-box-shadow: 8px 8px 12px #aaa;/* Ombre (Chrome/Safari anciens) *//* centre le texte horizontalement dans le bloc */
+}
+
+#menu a:hover, #menu a:focus {
+color: #BDD7B5;               /* couleur quand le lien est survolé ou a le focus */
+background-color: #508768;
+} 
+
+
+

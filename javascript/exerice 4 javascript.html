@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Utilisation d'un tableau</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript">
+
+// 1. Tableau tab
+let tab = [-2, 1, 4];
+
+// 2. Fonction additionne
+function additionne(x) {
+  return x + 2;
+}
+
+// 3. Fonction affiche appelée par le bouton
+function affiche() {
+  alert( additionne(tab[0]) );               // premier élément : -2
+  alert( additionne(tab[tab.length - 1]) );  // dernier élément : 4
+}
+
+</script>
+</head>
+<body>
+<h1>Utilisation d'un tableau</h1>
+<p>Cliquez sur le bouton pour lancer la fonction&nbsp;:
+  <button onclick="affiche()">Lancer la fonction</button>
+</p>
+</body>
+</html>

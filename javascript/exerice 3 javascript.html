@@ -1,0 +1,31 @@
+<html lang="fr">
+<head>
+<title>Écriture d'une fonction avec arguments</title>
+<meta charset="UTF-8">
+<script>
+
+// 1. Variables globales
+let a = 3;
+let b = 2;
+
+// 2. Fonction multiplie avec valeur par défaut (x = 8)
+function multiplie(x = 8) {
+  return x * 3;
+}
+
+// 3. Fonction affiche appelée au clic sur le bouton
+function affiche() {
+  alert(multiplie(a));  // multiplie 3
+  alert(multiplie(b));  // multiplie 2
+  alert(multiplie());   // multiplie 8 (valeur par défaut)
+}
+
+</script>
+</head>
+<body>
+<h1>Écriture d'une fonction avec arguments</h1>
+<p>Cliquez sur le bouton pour lancer la fonction&nbsp;:
+  <button onclick="affiche()">Lancer la fonction</button>
+</p>
+</body>
+</html>
